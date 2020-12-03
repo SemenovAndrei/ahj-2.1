@@ -5,27 +5,17 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   entry: './src/index.js',
   output: {
+    filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
-  },
-  devtool: 'source-map',
-
-  devServer: {
-    stats: 'errors-only',
-    open: true,
+    assetModuleFilename: 'images/[hash][ext][query]',
+    chunkLoading: false,
+    wasmLoading: false,
   },
   module: {
     rules: [
       {
         test: /\.(png|jpe?g|gif|svg|ico)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              esModule: false,
-              name: '[name].[ext]',
-            },
-          },
-        ],
+        type: 'asset',
       },
       {
         test: /\.js$/,
