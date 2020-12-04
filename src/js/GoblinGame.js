@@ -3,6 +3,7 @@ export default class GoblinGame {
     this.size = 4;
     this.board = board;
     this.character = character;
+    this.characterMove = null;
   }
 
   createUI() {
@@ -24,7 +25,7 @@ export default class GoblinGame {
   characterLogic() {
     const character = this.character.getCharacter();
     const cells = document.getElementsByClassName('cell');
-    setInterval(() => {
+    this.move = setInterval(() => {
       let index;
       let indexHasChild;
       do {
@@ -33,5 +34,9 @@ export default class GoblinGame {
       } while (index === indexHasChild);
       cells[index].appendChild(character);
     }, 1000);
+  }
+
+  characterStop() {
+    clearInterval(this.move);
   }
 }
