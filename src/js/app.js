@@ -11,5 +11,4 @@ console.log(worked);
 const board = new Board();
 const character = new Character();
 const goblinGame = new GoblinGame(board, character);
-goblinGame.createUI();
-console.log(goblinGame.characterLogic());
+goblinGame.init();

@@ -6,13 +6,20 @@ export default class GoblinGame {
     this.characterMove = null;
   }
 
+  init() {
+    this.createUI();
+    this.characterLogic();
+  }
+
   createUI() {
-    const container = document.createElement('div');
-    container.classList.add('container');
     const board = this.board.getBoard(this.size);
     const body = document.querySelector('body');
+
+    const container = document.createElement('div');
+    container.classList.add('container');
     container.innerHTML = GoblinGame.getContainerMarkUp();
     container.appendChild(board);
+
     body.insertBefore(container, body.firstChild);
   }
 
@@ -25,14 +32,12 @@ export default class GoblinGame {
   characterLogic() {
     const character = this.character.getCharacter();
     const cells = document.getElementsByClassName('cell');
+
     this.move = setInterval(() => {
-      let index;
-      let indexHasChild;
-      do {
-        indexHasChild = [...cells].findIndex((e) => e.hasChildNodes());
-        index = Math.floor(Math.random() * cells.length);
-      } while (index === indexHasChild);
-      cells[index].appendChild(character);
+      const freeCells = [...cells].filter((e) => !e.hasChildNodes());
+      const index = Math.floor(Math.random() * freeCells.length);
+
+      freeCells[index].appendChild(character);
     }, 1000);
   }
 

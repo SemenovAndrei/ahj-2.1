@@ -7,8 +7,10 @@ export default class Board {
     if (typeof number !== 'number') {
       throw new Error('значение должно быть числом');
     }
+
     const board = document.createElement('div');
     board.classList.add('board');
+
     for (let i = 0; i < Math.trunc(number); i += 1) {
       const cell = document.createElement('div');
       cell.classList.add('cell');
