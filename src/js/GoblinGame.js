@@ -1,4 +1,12 @@
+/**
+ * @class GoblinGame
+ */
 export default class GoblinGame {
+  /**
+   *
+   * @param {Class} board - игровое поле
+   * @param {Class} character - игровой персонаж
+   */
   constructor(board, character) {
     this.size = 4;
     this.board = board;
@@ -6,11 +14,17 @@ export default class GoblinGame {
     this.characterMove = null;
   }
 
+  /**
+   * Инициация игры
+   */
   init() {
     this.createUI();
     this.characterLogic();
   }
 
+  /**
+   * Создает игровое поле
+   */
   createUI() {
     const board = this.board.getBoard(this.size);
     const body = document.querySelector('body');
@@ -23,12 +37,18 @@ export default class GoblinGame {
     body.insertBefore(container, body.firstChild);
   }
 
+  /**
+   * Добавляет разметку
+   */
   static getContainerMarkUp() {
     return `
     <h1 class="title">Goblin Game</h1>
     `;
   }
 
+  /**
+   * Логика действий игрового персонажа
+   */
   characterLogic() {
     const character = this.character.getCharacter();
     const cells = document.getElementsByClassName('cell');
@@ -41,6 +61,9 @@ export default class GoblinGame {
     }, 1000);
   }
 
+  /**
+   * Останавливает перемещение игрового персонажа
+   */
   characterStop() {
     clearInterval(this.move);
   }
